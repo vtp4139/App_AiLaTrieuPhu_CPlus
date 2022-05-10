@@ -1,47 +1,5 @@
-#include "Header.h" 
-
-#define maxpt 10000 
-#define maxpt_d 10000 
-
-using namespace std;
-
-
-int fflush(FILE *stream);
-
-enum // Khai vao kieu liet ke cac hang so khong thay doi trong bai
-{
-	KEY_ESC = 27,
-	ARROW_UP = 256 + 72,
-	ARROW_DOWN = 256 + 80,
-	ARROW_LEFT = 256 + 75,
-	ARROW_RIGHT = 256 + 77
-};
-HANDLE hConsoleColor;
-char op1[maxpt_d] = "BAT DAU CHOI";
-char op2[maxpt_d] = "HUONG DAN";
-char op3[maxpt_d] = "THONG TIN NHOM";
-char op4[maxpt_d] = "THOAT";
-
-char md1[maxpt_d] = "200.000 VND";
-char md2[maxpt_d] = "400.000 VND";
-char md3[maxpt_d] = "600.000 VND";
-char md4[maxpt_d] = "1.000.000 VND";
-char md5[maxpt_d] = "2.000.000 VND";
-char md6[maxpt_d] = "3.000.000 VND";
-char md7[maxpt_d] = "6.000.000 VND";
-char md8[maxpt_d] = "10.000.000 VND";
-char md9[maxpt_d] = "14.000.000 VND";
-char md10[maxpt_d] = "22.000.000 VND";
-char md11[maxpt_d] = "30.000.000 VND";
-char md12[maxpt_d] = "40.000.000 VND";
-char md13[maxpt_d] = "60.000.000 VND";
-char md14[maxpt_d] = "85.000.000 VND";
-char md15[maxpt_d] = "150.000.000 VND";
-
-char huongDan[100000];
-char chuoiRong[10000];
-int tg1, tg2, tg3, tg4, a = 0, b = 0, c = 0, d = 0, cauHoi = 0, md = 1, pt, moc2 = 0, moc3 = 0;;
-
+#include "./Header Files/Header.h" 
+#include "./Header Files/Enum.h" 
 
 // Su dung thu vien Window.h de goi duoc toa do cua x , y tren console . Giup di chuyen chuyen den vi tri bat
 //ki tren console
@@ -78,14 +36,7 @@ void phimBatKi ()
 - Nhap va ghi file tu txt
 - Tim kim theo thu tu ghi file vao txt
 */
-struct dataHandle {
-	char cauHoi[maxpt];
-	char a[maxpt];
-	char b[maxpt];
-	char c[maxpt];
-	char d[maxpt];
-	char dapAn[maxpt];
-}; dataHandle dt[maxpt];
+
 
 void inputData(int x) // Nhap file tu txt  - ( x - file muon nhap theo do kho ) 
 {
@@ -94,13 +45,13 @@ void inputData(int x) // Nhap file tu txt  - ( x - file muon nhap theo do kho )
 
 	switch (x) {
 	case 1:
-		f.open("QuestA.txt", ios::in);
+		f.open("Data/QuestA.txt", ios::in);
 		break;
 	case 2:
-		f.open("QuestB.txt", ios::in);
+		f.open("Data/QuestB.txt", ios::in);
 		break;
 	case 3:
-		f.open("QuestC.txt", ios::in);
+		f.open("Data/QuestC.txt", ios::in);
 		break;
 	}
 	while (!f.eof()) 
@@ -117,7 +68,7 @@ void inputData(int x) // Nhap file tu txt  - ( x - file muon nhap theo do kho )
 	pt = i;
 	f.close();
 }
-void xoaPT(int &n, dataHandle a[], int vt)
+void xoaPT(int &n, DataHandle a[], int vt)
 {
 	for (int i = vt; i < n; i++)
 	{
