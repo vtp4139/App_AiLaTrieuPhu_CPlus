@@ -1,24 +1,11 @@
-/*
-BAI TIEU LUAN MON GIAI THUAT VA CSDL
-NHOM 4 
-VO TUAN PHUONG - 17030061
-BUI DUC THIEN - 17041331
-HA THANH PHI - 17037141
-MAI THI KIM QUE - 17025241 
-------------------------------------------------------------------*/
-
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <conio.h> 
-#include<windows.h>
-#include<iostream>
-#include <cwchar>
-#include<fstream>
+#include "Header.h" 
 
 #define maxpt 10000 
 #define maxpt_d 10000 
 
 using namespace std;
+
+
 int fflush(FILE *stream);
 
 enum // Khai vao kieu liet ke cac hang so khong thay doi trong bai
@@ -91,14 +78,14 @@ void phimBatKi ()
 - Nhap va ghi file tu txt
 - Tim kim theo thu tu ghi file vao txt
 */
-struct data {
+struct dataHandle {
 	char cauHoi[maxpt];
 	char a[maxpt];
 	char b[maxpt];
 	char c[maxpt];
 	char d[maxpt];
 	char dapAn[maxpt];
-}; data dt[maxpt];
+}; dataHandle dt[maxpt];
 
 void inputData(int x) // Nhap file tu txt  - ( x - file muon nhap theo do kho ) 
 {
@@ -130,7 +117,7 @@ void inputData(int x) // Nhap file tu txt  - ( x - file muon nhap theo do kho )
 	pt = i;
 	f.close();
 }
-void xoaPT(int &n, data a[], int vt)
+void xoaPT(int &n, dataHandle a[], int vt)
 {
 	for (int i = vt; i < n; i++)
 	{
@@ -147,86 +134,86 @@ void menu()
 		gotoxy(26, i);
 	}
 	gotoxy(0, 0);
-	cout << "MENU" << endl;
-	cout << "-------------------------" << endl;
-	cout << "1. Them cau hoi moi" << endl;
-	cout << "2. Tim kiem cau hoi" << endl;
-	cout << "3. Tro ve menu" << endl;
-	cout << "-------------------------" << endl;
-	cout << "> Chon chuc nang : ";
+	// cout << "MENU" << endl;
+	// cout << "-------------------------" << endl;
+	// cout << "1. Them cau hoi moi" << endl;
+	// cout << "2. Tim kiem cau hoi" << endl;
+	// cout << "3. Tro ve menu" << endl;
+	// cout << "-------------------------" << endl;
+	// cout << "> Chon chuc nang : ";
 }
-int themCauHoiMoi()
-{
-	int c;
-	std::ofstream f;
-	char Q[maxpt], A[maxpt], B[maxpt], C[maxpt], D[maxpt], DA[maxpt];
+// int themCauHoiMoi()
+// {
+// 	int c;
+// 	std::ofstream f;
+// 	char Q[maxpt], A[maxpt], B[maxpt], C[maxpt], D[maxpt], DA[maxpt];
 
-	do {
-		system("cls");
-		menu();
-		gotoxy(28, 1);
-		cout << "Chon muc do cau hoi ban muon them : ";
-		gotoxy(28, 2);
-		cout << "1 . De ( cau 1 - 5 )";
-		gotoxy(28, 3);
-		cout << "2 . Trung binh ( cau 6 - 10 )";
-		gotoxy(28, 4);
-		cout << "3 . Kho ( cau 11 - 15 )";
-		if (c > 3)
-		{
-			gotoxy(28, 5);
-			cout << "> Muc do ban chon khong co trong Menu ! Moi nhap lai : ";
-			cin >> c;
-		}
-		else {
-			gotoxy(28, 5);
-			cout << "> Chon : ";
-			cin >> c;
-		}
-	} while (c > 3);
+// 	do {
+// 		system("cls");
+// 		menu();
+// 		gotoxy(28, 1);
+// 		cout << "Chon muc do cau hoi ban muon them : ";
+// 		gotoxy(28, 2);
+// 		cout << "1 . De ( cau 1 - 5 )";
+// 		gotoxy(28, 3);
+// 		cout << "2 . Trung binh ( cau 6 - 10 )";
+// 		gotoxy(28, 4);
+// 		cout << "3 . Kho ( cau 11 - 15 )";
+// 		if (c > 3)
+// 		{
+// 			gotoxy(28, 5);
+// 			cout << "> Muc do ban chon khong co trong Menu ! Moi nhap lai : ";
+// 			cin >> c;
+// 		}
+// 		else {
+// 			gotoxy(28, 5);
+// 			cout << "> Chon : ";
+// 			cin >> c;
+// 		}
+// 	} while (c > 3);
 
-	gotoxy(28, 6);
-	cout << "---------------------------------------------------------";
-	switch (c) {
-	case 1:
-		f.open("QuestA.txt", std::ios::app);
-		break;
-	case 2:
-		f.open("QuestB.txt", std::ios::app);
-		break;
-	case 3:
-		f.open("QuestC.txt", std::ios::app);
-		break;
-	}
-	gotoxy(28, 7);
-	cout << "> Nhap cau hoi : ";
-	fflush(stdin);
-	gets(Q);
-	gotoxy(28, 8);
-	cout << "> Nhap dap an A : ";
-	fflush(stdin);
-	gets(A);
-	gotoxy(28, 9);
-	cout << "> Nhap dap an B : ";
-	fflush(stdin);
-	gets(B);
-	gotoxy(28, 10);
-	cout << "> Nhap dap an C : ";
-	fflush(stdin);
-	gets(C);
-	gotoxy(28, 11);
-	cout << "> Nhap dap an D : ";
-	fflush(stdin);
-	gets(D);
-	gotoxy(28, 12);
-	cout << "> Nhap dap an dung : ";
-	fflush(stdin);
-	gets(DA);
-	f << "/" << Q << "/" << A << "/" << B << "/" << C << "/" << D << "/" << DA << "/" << "\n";
-	f.close();
-	gotoxy(28, 13);
-	cout << "> Nhap thanh cong ! Nhan phim bat ki de tiep tuc .";
-}
+// 	gotoxy(28, 6);
+// 	cout << "---------------------------------------------------------";
+// 	switch (c) {
+// 	case 1:
+// 		f.open("QuestA.txt", std::ios::app);
+// 		break;
+// 	case 2:
+// 		f.open("QuestB.txt", std::ios::app);
+// 		break;
+// 	case 3:
+// 		f.open("QuestC.txt", std::ios::app);
+// 		break;
+// 	}
+// 	gotoxy(28, 7);
+// 	cout << "> Nhap cau hoi : ";
+// 	fflush(stdin);
+// 	fgets(Q, sizeof(Q), stdin);
+// 	gotoxy(28, 8);
+// 	cout << "> Nhap dap an A : ";
+// 	fflush(stdin);
+// 	gets_s(A);
+// 	gotoxy(28, 9);
+// 	cout << "> Nhap dap an B : ";
+// 	fflush(stdin);
+// 	gets_s(B);
+// 	gotoxy(28, 10);
+// 	cout << "> Nhap dap an C : ";
+// 	fflush(stdin);
+// 	gets_s(C);
+// 	gotoxy(28, 11);
+// 	cout << "> Nhap dap an D : ";
+// 	fflush(stdin);
+// 	gets_s(D);
+// 	gotoxy(28, 12);
+// 	cout << "> Nhap dap an dung : ";
+// 	fflush(stdin);
+// 	gets_s(DA);
+// 	f << "/" << Q << "/" << A << "/" << B << "/" << C << "/" << D << "/" << DA << "/" << "\n";
+// 	f.close();
+// 	gotoxy(28, 13);
+// 	cout << "> Nhap thanh cong ! Nhan phim bat ki de tiep tuc .";
+// }
 void timCauHoi()
 {
 	fstream f1, f2, f3;
@@ -305,7 +292,7 @@ int toChucDL()
 		cin >> c;
 		switch (c) {
 		case 1:
-			themCauHoiMoi();
+			//themCauHoiMoi();
 			break;
 		case 2:
 			timCauHoi();
@@ -506,7 +493,7 @@ void taoKhungTg3(char dapan[], int x)
 	gotoxy(18, 22);
 	printf("3 .%c", x - 32);
 	gotoxy(18, 23);
-	cout << "4 ." << dapan << endl;
+	//cout << "4 ." << dapan << endl;
 	SetConsoleTextAttribute(hConsoleColor, 39);
 	gotoxy(28, 24);
 	cout << "CHAP NHAN";
@@ -690,7 +677,7 @@ void menuColor(int arrow)
 	gotoxy(34, 3); cout << "BAI TAP LON MON CAU TRUC DU LIEU VA GIAI THUAT";
 	gotoxy(43, 5); cout << "DE TAI 2 : AI LA TRIEU PHU";
 	gotoxy(44, 7); cout << "GIAO VIEN : DANG THI PHUC";
-	gotoxy(53, 9); cout << "NHOM 4";
+	gotoxy(53, 9); cout << "NHOM 4 VTP";
 	gotoxy(34, 11); cout << "----------------------------------------------";
 	taoKhung(48, 13, 25, 47, 66, 14, 18, 11);
 
